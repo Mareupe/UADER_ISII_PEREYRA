@@ -46,5 +46,7 @@ while len(primeList) < count:
 	x += 1
 print(primeList)
 
+
 actual=time.strftime("%c")
-print("Fecha y hora actual: "+actual)
+eb=TextBlob("Fecha y hora actual: ", +actual)
+print(eb.translate(to="it")
