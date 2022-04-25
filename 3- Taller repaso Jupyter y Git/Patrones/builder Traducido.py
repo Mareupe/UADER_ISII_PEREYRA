@@ -6,8 +6,8 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Any
+import msvcrt
 from textblob import TextBlob
-
 
 class Builder(ABC):
     """
@@ -97,9 +97,7 @@ class Product1():
         self.parts.append(part)
 
     def list_parts(self) -> None:
-        eb0=TextBlob("Product parts:")
-        print(eb0.translate(from_lang="en", to="es"))
-        print(f" {', '.join(self.parts)}", end="")
+        print(f"Product parts: {', '.join(self.parts)}", end="")
 
 
 class Director:
@@ -150,26 +148,28 @@ if __name__ == "__main__":
     director = Director()
     builder = ConcreteBuilder1()
     director.builder = builder
-    eb=TextBlob("Standard basic product: ")
-    print(eb.translate(from_lang="en", to="es"))
+
+    print("Standard basic product: ")
     director.build_minimal_viable_product()
     builder.product.list_parts()
 
     print("\n")
 
-    eb1=TextBlob("Standard full featured product: ")
-    print(eb1.translate(from_lang="en", to="es"))
+    print("Standard full featured product: ")
     director.build_full_featured_product()
     builder.product.list_parts()
 
     print("\n")
 
     # Remember, the Builder pattern can be used without a Director class.
-    eb2=TextBlob("Custom product: ")
-    print(eb2.translate(from_lang="en", to="es"))
+    print("Custom product: ")
     builder.produce_part_a()
     builder.produce_part_b()
     builder.product.list_parts()
 
     print("\n")
 
+eb2=TextBlob("Custom product: ")
+print(eb2.translate(from_lang="en", to="es"))
+
+msvcrt.getch()
